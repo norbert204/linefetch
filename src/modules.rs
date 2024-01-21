@@ -1,5 +1,4 @@
 use core::panic;
-use std::str::Lines;
 
 use crate::color;
 use crate::distro::Distro;
@@ -35,6 +34,7 @@ pub fn from_string(module: &String) -> fn(&color::Color) -> String {
         "kernel" => kernel,
         "ip-address" => ip_address,
         "memory" => memory,
+        "uptime" => uptime,
         _ => panic!("Unknown module in configuration '{}'", module),
     }
 }
@@ -68,6 +68,28 @@ pub fn memory(accent_color: &color::Color) -> String {
 
 pub fn ip_address(accent_color: &color::Color) -> String {
     render_module(accent_color, "\u{f06f3}", local_ip_address::local_ip().unwrap().to_string())
+}
+
+pub fn uptime(accent_color: &color::Color) -> String {
+    let uptime = std::fs::read_to_string("/proc/uptime")
+        .unwrap();
+
+    let uptime = uptime.split_whitespace()
+        .nth(0) // The first number of the two is the total seconds elapsed since the last restart.
+        .unwrap()
+        .parse::<f32>()
+        .unwrap();
+
+    let minutes = ((uptime / 60.0) as i32) % 60;
+    let hours = (uptime / (60.0 * 60.0)) as i32;
+    
+    let info = if hours > 0 {
+        format!("{} hours, {} minutes", hours, minutes)
+    } else {
+        format!("{} minutes", minutes)
+    };
+
+    render_module(accent_color, "\u{f144e}", info)
 }
 
 fn render_module(accent_color: &color::Color, icon: &str, info: String) -> String {

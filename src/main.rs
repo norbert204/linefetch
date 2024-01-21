@@ -18,7 +18,7 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
     }
 
     if modules_to_load.len() != 3 {
-        panic!("Error! 3 modules should be loaded!");
+        panic!("Error! 3 modules should be loaded!")
     }
 
     let mut module_strings: Vec<String> = Vec::new();
