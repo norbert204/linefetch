@@ -1,18 +1,21 @@
 use core::panic;
 
 mod color;
+mod config;
 mod distro;
 mod modules;
 
 fn main() -> Result<(), Box<dyn std::error::Error>> {
+    let config = config::Config::load();
+
     let distro = distro::Distro::new();
     let accent_color = color::Color::accent_color(&distro);
 
-    let modules_to_load: Vec<fn(&color::Color) -> String> = vec![
-        modules::kernel,
-        modules::ip_address,
-        modules::memory,
-    ];
+    let mut modules_to_load: Vec<fn(&color::Color) -> String> = Vec::new();
+
+    for module in config.modules {
+        modules_to_load.push(modules::from_string(&module))
+    }
 
     if modules_to_load.len() != 3 {
         panic!("Error! 3 modules should be loaded!");
@@ -26,7 +29,7 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
         module_strings.push(module(&accent_color));
     }
 
-    println!("{}", module_strings.join("    "));
+    println!("\n{}", module_strings.join("    "));
 
     Ok(())
 }

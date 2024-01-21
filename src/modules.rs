@@ -1,3 +1,4 @@
+use core::panic;
 use std::str::Lines;
 
 use crate::color;
@@ -26,6 +27,15 @@ pub fn distro_badge(distro: &Distro) -> String {
         Distro::ArchLinux => create_badge(color::Color::White, color::Color::Cyan, "\u{f303}", "\u{e0b0}"),
         Distro::Debian => create_badge(color::Color::Red, color::Color::White, "\u{f306}", "\u{e0b4}"),
         _ => create_badge(color::Color::Black, color::Color::Yellow, "\u{ebc6}", "\u{e0b0}")
+    }
+}
+
+pub fn from_string(module: &String) -> fn(&color::Color) -> String {
+    match module.as_str() {
+        "kernel" => kernel,
+        "ip-address" => ip_address,
+        "memory" => memory,
+        _ => panic!("Unknown module in configuration '{}'", module),
     }
 }
 
