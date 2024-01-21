@@ -71,8 +71,7 @@ pub fn ip_address(accent_color: &color::Color) -> String {
 }
 
 pub fn uptime(accent_color: &color::Color) -> String {
-    let uptime = std::fs::read_to_string("/proc/uptime")
-        .unwrap();
+    let uptime = std::fs::read_to_string("/proc/uptime").unwrap();
 
     let uptime = uptime.split_whitespace()
         .nth(0) // The first number of the two is the total seconds elapsed since the last restart.
@@ -83,11 +82,21 @@ pub fn uptime(accent_color: &color::Color) -> String {
     let minutes = ((uptime / 60.0) as i32) % 60;
     let hours = (uptime / (60.0 * 60.0)) as i32;
     
-    let info = if hours > 0 {
-        format!("{} hours, {} minutes", hours, minutes)
+    let hours = if hours == 1 {
+        String::from("1 hour, ")
+    } else if hours > 1 {
+        format!("{} hours, ", hours)
+    } else {
+        String::from("")
+    };
+
+    let minutes = if minutes == 1 {
+        String::from("1 minute")
     } else {
         format!("{} minutes", minutes)
     };
+
+    let info = format!("{}{}", hours, minutes);
 
     render_module(accent_color, "\u{f144e}", info)
 }
