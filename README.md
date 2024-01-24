@@ -1,6 +1,7 @@
+<h1 align="center">Linefetch</h1>
+
 ![screenshot](.screenshots/main.png)
 
-<h1 align="center">Linefetch</h1>
 <p align="center">A simple customizable one liner fetch tool for GNU/Linux systems written in Rust</p>
 
 # Installation
