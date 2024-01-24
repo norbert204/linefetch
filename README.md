@@ -48,6 +48,8 @@ Configuration can be done via the `config.json` file under `$XDG_CONFIG_HOME/lin
 
 ## Supported modules
 
+| Name | Description |
+| -- | -- |
 | `ip-address` | Shows the systems local IP address |
 | `kernel` | Shows the currently loaded Linux kernel version |
 | `memory` | Shows the currently used and total amount of RAM |
