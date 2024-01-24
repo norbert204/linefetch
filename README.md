@@ -1,11 +1,10 @@
 # Linefetch
 
-![screenshot](screenshots/main.png)
+![screenshot](.screenshots/main.png)
 
 A simple customizable one liner fetch tool
 
 # Installation
----
 
 Currently we do not provide any prebuilt binaries nor we have official packages in any linux distro repositories. You have to compile the code yourself to get an executable.
 
