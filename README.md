@@ -44,7 +44,7 @@ Configuration can be done via the `config.json` file under `$XDG_CONFIG_HOME/lin
 
 | Name | Type | Description |
 | -- | -- | -- |
-| `modules` | string list | Which modules to show in the fetch. Supported modules can be found below. | 
+| `modules` | string list | Which modules to show in the fetch. Supported modules can be found below. The list should must `3` modules! | 
 
 ## Supported modules
 
