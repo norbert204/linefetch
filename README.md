@@ -1,8 +1,10 @@
-# Linefetch
+<p align="center"> 
+    <img src=".screenshots/main.png" />
 
-![screenshot](.screenshots/main.png)
+    <h1>Linefetch</h1>
 
-A simple customizable one liner fetch tool
+    <p>A simple customizable one liner fetch tool</p>
+</p>
 
 # Installation
 
