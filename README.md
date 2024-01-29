@@ -1,7 +1,13 @@
 <h1 align="center">Linefetch</h1>
 <p align="center">A simple customizable one liner fetch tool for GNU/Linux systems written in Rust</p>
 
-![screenshot](.screenshots/main.png)
+<img align="center" alt="screenshot" src=".screenshots/main.png" />
+
+# Requirements
+
+For the fetching to look right, you'll need to use a Nerd Font in your terminal emulator.
+
+You can find out more under the [Nerd Font GitHub repo](https://github.com/ryanoasis/nerd-fonts).
 
 # Installation
 
